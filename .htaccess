@@ -1,0 +1,29 @@
+
+
+# BEGIN WordPress
+# Οι ντιρεκτίβες (γραμμές) ανάμεσα `BEGIN WordPress` και`END WordPress` είναι
+# δυναμικά δημιουργημένες, και θα πρέπει να τροποποιούνται μόνο με την χρήση φίλτρων WordPress.
+# Οποιεσδήποτε αλλαγές στις ντιρεκτίβες ανάμεσα στους δείκτες θα επανεγραφεί.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /wordpress/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /wordpress/index.php [L]
+</IfModule>
+
+# END WordPress
+
+# Begin AIOWPSEC Firewall
+	<IfModule mod_php5.c>
+		php_value auto_prepend_file 'C:/xampp/htdocs/wordpress/aios-bootstrap.php'
+	</IfModule>
+	<IfModule mod_php7.c>
+		php_value auto_prepend_file 'C:/xampp/htdocs/wordpress/aios-bootstrap.php'
+	</IfModule>
+	<IfModule mod_php.c>
+		php_value auto_prepend_file 'C:/xampp/htdocs/wordpress/aios-bootstrap.php'
+	</IfModule>
+# End AIOWPSEC Firewall
